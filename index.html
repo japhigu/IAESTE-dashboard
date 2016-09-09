@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="css/main.css">
 	<!--<link rel="shortcut icon" href="favicon.ico">-->
 
+    <!--@ledewde added:-->
+    <script src="https://d3js.org/d3-selection.v1.min.js"><
+
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<script src="js/vendor/d3.v3.min.js"></script>
 	<script src="js/vendor/queue.v1.min.js"></script>
@@ -127,7 +130,7 @@
 	</div>
 
 	<div id="container1" class="widget2 " style="position: relative; width: 700px !important; height: 450px !important;">
-		<H2>Most Popular Target Country</H2>
+		<H2>10 Most Popular Target Countries</H2>
 		<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
 			 xmlns:xlink="http://www.w3.org/1999/xlink">
 			<!-- Horizontal Stripe pattern -->
@@ -190,6 +193,12 @@
 </div>
 
 	<script>
+//        var colors = ["#5D2EE8", "#2F9EEE", "#2FC8EE", "#2DD91A", "#CBF22C", "#F2CE2C", "#F06E1D", "#E61717", "#3C2EA8", "#7A2EA1"];
+		var colors = ["005E9E","0035A7","0107B0", "3002B9", "6803C2", "A505CB", "D306C1", "DC078D","E50955"];
+
+
+		var colorRange = d3.scale.quantile().domain([1, 100]).range(colors);
+
 		var election = new Datamap({
 			scope: 'world',
 			element: document.getElementById('container1'),
@@ -197,16 +206,30 @@
 
 			fills: {
 				defaultFill: '#f0af0a',
-				horizontalStripe: 'url(#horizontal-stripe)',
-				diagonalStripe: 'url(#diagonal-stripe)',
-				verticalStripe: 'url(#vertical-stripe)',
-				circles: 'url(#circles)',
-				gradient: 'url(#gradient)',
-				triangle: 'url(#triangle)'
+                popular1: colorRange(5),
+                popular2:colorRange(15),
+                popular3:colorRange(25),
+                popular4:colorRange(35),
+                popular5:colorRange(45),
+                popular6:colorRange(55),
+                popular7:colorRange(65),
+                popular8:colorRange(75),
+                popular9:colorRange(85),
+                popular10:colorRange(95),
+//              horizontalStripe: 'url(#horizontal-stripe)',
+//				diagonalStripe: 'url(#diagonal-stripe)',
+//				verticalStripe: 'url(#vertical-stripe)',
+//				circles: 'url(#circles)',
+//				gradient: 'url(#gradient)',
+//				triangle: 'url(#triangle)'
 			},
-// call the php getter script here
+// call the php getter script here, outputting
+// CCODE: {fillKey: 'popularN'},
+//	effectively:     string:value \pair
+//					 value=array
+//					 array=string:value \pair
 			data: {
-				USA: {fillKey: 'diagonalStripe' },
+				USA: {fillKey: 'popular10' },
 				RUS: {fillKey: 'verticalStripe' },
 				CAN: {fillKey: 'horizontalStripe' },
 				BRA: {fillKey: 'circles' },
@@ -214,6 +237,17 @@
 				CHN: {fillKey: 'triangle' }
 			}
 		})
+
+//        var dapic = d3.select("body").select("div").select("svg");
+
+//        var zoom = d3.behavior.zoom()
+//                .on("zoom",function() {
+//                    g.attr("transform","translate("+
+//                            d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+//                    g.selectAll("path")
+//                            .attr("d", path.projection(projection));
+//                });
+//        dapic.call(zoom)
 	</script>
 </body>
 </html>
