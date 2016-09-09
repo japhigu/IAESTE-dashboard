@@ -1,13 +1,14 @@
-A Simple D3.js Dashbaord by Colin A. White (Spring 2014)
+A Simple D3.js Dashboard inspired by Colin A. Whites work
 
-Online Example hosted here :
+Original Online Example hosted here :
 
-    http://colinwhite.net/Dash2.3/
+    http://colinwhite.net/Dash2.5/
 
-Initial blog post here :
-
-    http://nyquist212.wordpress.com/
-
-Special thanks to Lars Kutthof for his mentoring and patience.
-
-    http://stackoverflow.com/users/1172002/lars-kotthoff
+# Feature goals: User story #
+### Click-less paradigm: ###
+* __I want to see how many students have registered from which university without clicking anything__ 
+* __I want to see which regions are most popular as internship destinations__
+* __I want to know the % of unfinished applications__
+* __I want to see the 10 most popular offers__
+* __I want to see a map showing how many people applied for each country__
+ 
