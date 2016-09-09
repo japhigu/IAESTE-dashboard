@@ -259,6 +259,17 @@ li {
   stroke-linecap: round;
   pointer-events: none;
 }
+/* @japhigu add-ins */
+.widget2-iaeste {
+    margin: 0 auto !important;
+    width: 60% !important;
+    height: 450px !important;
+}
+h2 + svg {
+position: absolute;
+width: 0;
+height: 0;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

@@ -29,6 +29,7 @@
 	<script src="js/Census.js"></script>
 	<script src="js/mySankey.js"></script>
 	<script src="js/Choropleth.js"></script>
+	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
 	<script type="text/javascript"> 
 		window.onload = function () {
 		    var dateTime = new Date();
@@ -90,7 +91,7 @@
 		<!--</LI>-->
 		<!--<LI style="font-size: 10px">The hospital system census includes inpatient, acute rehab and swing bed. It excludes hospitals with zero census, nursery, newborns, ED, and recurring outpatient.</LI>-->
 	<!--</UL>-->
-<!--</div>-->nnjbj
+<!--</div>-->
 
 <div class="widget1">
 	<H2>Unis</H2>
@@ -101,7 +102,7 @@
 		<LI style="font-size: 10px">Hier wird die Anzahl von registierten Bewerbern je nach Uni dargestellt.</LI>
 	</UL>
 </div>
-
+</div>
  <!-- END ROW1 -->
 
 <div id="Row2">
@@ -117,18 +118,102 @@
 
 
 	<div class="widget1">
-	<H2>Regional Discharges</H2>
-	<UL>
-		<div id="choro"></div>
-		<LI></LI>
-		<LI style="font-size: 10px">Heat maps (choropleths) can be generated from databases or websockets.</LI>
-		<LI style="font-size: 10px">TODO: get TOPOjson worldmap, annotate using data from iaeste DB</LI>
-	</UL>
-</div>
-</div>
+		<H2>Regional Discharges</H2>
+		<UL>
+			<div id="choro"></div>
+			<LI style="font-size: 10px">Heat maps (choropleths) can be generated from databases or websockets.</LI>
+			<LI style="font-size: 10px">TODO: get TOPOjson worldmap, annotate using data from iaeste DB</LI>
+		</UL>
+	</div>
+
+	<div id="container1" class="widget2 " style="position: relative; width: 700px !important; height: 450px !important;">
+		<H2>Most Popular Target Country</H2>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+			 xmlns:xlink="http://www.w3.org/1999/xlink">
+			<!-- Horizontal Stripe pattern -->
+			<defs>
+				<pattern id="horizontal-stripe"
+						 width="4" height="4"
+						 patternUnits="userSpaceOnUse">
+					<line x1="0" y1="2" x2="4" y2="2" stroke="blue" />
+				</pattern>
+			</defs>
 
 
-<script>
-</script>
+			<!-- Vertical Stripe pattern -->
+			<defs>
+				<pattern id="vertical-stripe"
+						 width="4" height="4"
+						 patternUnits="userSpaceOnUse">
+					<line x1="2" y1="0" x2="2" y2="4" stroke="green" />
+				</pattern>
+			</defs>
+
+			<!-- Diagonal Stripe pattern -->
+			<defs>
+				<pattern id="diagonal-stripe"
+						 patternTransform="rotate(45)"
+						 width="4" height="4"
+						 patternUnits="userSpaceOnUse">
+					<line x1="2" y1="0" x2="2" y2="4" stroke="#bada55" stroke-width="2" />
+				</pattern>
+			</defs>
+
+			<!-- Circles pattern -->
+			<defs>
+				<pattern id="circles"
+						 width="4" height="4"
+						 patternUnits="userSpaceOnUse">
+					<circle cx="2.5" cy="2.5" r="1.3" fill="green" />
+				</pattern>
+			</defs>
+
+			<!-- Gradient pattern. Wouldn't really recommend this one. -->
+			<linearGradient id="gradient">
+				<stop offset="5%" stop-color="#F60" />
+				<stop offset="95%" stop-color="#FF6" />
+			</linearGradient>
+
+			<!-- Triangles pattern -->
+			<pattern id="triangle"
+					 width="8" height="8"
+					 patternUnits="userSpaceOnUse">
+				<polygon points="3,0 6,6 0,6" fill="purple"/>
+			</pattern>
+		</svg>
+		<!--<UL>-->
+			<!--&lt;!&ndash;<div id="choro"></div>&ndash;&gt;-->
+			<!--<LI style="font-size: 10px">Heat maps (choropleths) can be generated from databases or websockets.</LI>-->
+			<!--<LI style="font-size: 10px">TODO: get TOPOjson worldmap, annotate using data from iaeste DB</LI>-->
+		<!--</UL>-->
+	</div>
+</div>
+
+	<script>
+		var election = new Datamap({
+			scope: 'world',
+			element: document.getElementById('container1'),
+			projection: 'mercator',
+
+			fills: {
+				defaultFill: '#f0af0a',
+				horizontalStripe: 'url(#horizontal-stripe)',
+				diagonalStripe: 'url(#diagonal-stripe)',
+				verticalStripe: 'url(#vertical-stripe)',
+				circles: 'url(#circles)',
+				gradient: 'url(#gradient)',
+				triangle: 'url(#triangle)'
+			},
+// call the php getter script here
+			data: {
+				USA: {fillKey: 'diagonalStripe' },
+				RUS: {fillKey: 'verticalStripe' },
+				CAN: {fillKey: 'horizontalStripe' },
+				BRA: {fillKey: 'circles' },
+				GRL: {fillKey: 'gradient'},
+				CHN: {fillKey: 'triangle' }
+			}
+		})
+	</script>
 </body>
 </html>

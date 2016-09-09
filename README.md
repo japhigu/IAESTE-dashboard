@@ -11,4 +11,3 @@ Original Online Example hosted here :
 * __I want to know the % of unfinished applications__
 * __I want to see the 10 most popular offers__
 * __I want to see a map showing how many people applied for each country__
- 
